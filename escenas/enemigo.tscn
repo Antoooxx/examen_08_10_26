@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://bgxrva6dahe5n"]
+
+[ext_resource type="Texture2D" uid="uid://cw4oy0teq4ua2" path="res://sprites/icon.svg" id="1_sms58"]
+[ext_resource type="Script" uid="uid://3dcj6v50hwta" path="res://scripts/enemigo.gd" id="1_uhebs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfkbx"]
+size = Vector2(145.74184, 143.52638)
+
+[sub_resource type="Animation" id="Animation_743j8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AreaMuerte2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AreaMuerte2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AreaMuerte2D/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uhebs"]
+resource_name = "arriba_abajo"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AreaMuerte2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -463.25085)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AreaMuerte2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AreaMuerte2D/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_743j8"]
+_data = {
+&"RESET": SubResource("Animation_743j8"),
+&"arriba_abajo": SubResource("Animation_uhebs")
+}
+
+[node name="enemigo" type="Node2D" unique_id=1254947799]
+scale = Vector2(0.38424107, 0.38424107)
+script = ExtResource("1_uhebs")
+
+[node name="AreaMuerte2D" type="Area2D" parent="." unique_id=954636240]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMuerte2D" unique_id=1504901111]
+scale = Vector2(1.0038633, 0.96947664)
+shape = SubResource("RectangleShape2D_lfkbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="AreaMuerte2D" unique_id=319764570]
+scale = Vector2(1.0625, 1.015625)
+texture = ExtResource("1_sms58")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1358507487]
+libraries/ = SubResource("AnimationLibrary_743j8")
+autoplay = &"arriba_abajo"
+
+[connection signal="body_entered" from="AreaMuerte2D" to="." method="_on_area_muerte_2d_body_entered"]

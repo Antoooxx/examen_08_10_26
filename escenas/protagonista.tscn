@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dhcb8e7nvf1iw"]
+
+[ext_resource type="Script" uid="uid://bbsi5fc08435l" path="res://scripts/protagonista.gd" id="1_dstjp"]
+[ext_resource type="Texture2D" uid="uid://cw4oy0teq4ua2" path="res://sprites/icon.svg" id="2_rfpc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfkbx"]
+size = Vector2(138, 132)
+
+[node name="protagonista" type="CharacterBody2D" unique_id=1463774666]
+script = ExtResource("1_dstjp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=406982450]
+shape = SubResource("RectangleShape2D_lfkbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=184504188]
+scale = Vector2(1.0625, 1.015625)
+texture = ExtResource("2_rfpc5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=255626042]
+zoom = Vector2(0.2, 0.2)
